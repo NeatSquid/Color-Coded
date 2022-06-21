@@ -6,27 +6,18 @@ namespace Circle_Scripts
     {
         private void Start()
         {
-            iTween.MoveTo(gameObject, iTween.Hash(new object[]
-            {
-                "y",
-                0f,
-                "easetype",
-                iTween.EaseType.easeInCirc,
-                "time",
-                .2f,
-                "OnComplete",
-                "RotateCircle",
-            }));
+            iTween.MoveTo(gameObject,
+                iTween.Hash("y", 0f, "easetype", iTween.EaseType.easeInCirc, "time", .2f, "OnComplete",
+                    "RotateCircle"));
         }
 
         private void RotateCircle()
         {
-            print("Itween final called");
+            iTween.RotateBy(gameObject,
+                iTween.Hash("y", .2f, "time", BallHandler.RotationTime, "easetype", iTween.EaseType.easeInOutQuad,
+                    "looptype", iTween.LoopType.pingPong, "delay", 1.5f));
         }
 
-        private void Update()
-        {
-            transform.Rotate(Vector3.up * (Time.deltaTime * BallHandler.RotationSpeed));
-        }
+        private void Update() => transform.Rotate(Vector3.up * (Time.deltaTime * BallHandler.RotationSpeed));
     }
 }

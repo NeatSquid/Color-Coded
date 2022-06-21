@@ -680,7 +680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3300177417069222331}
-  - component: {fileID: 2457551402859401864}
+  - component: {fileID: 2427785426380713625}
   m_Layer: 0
   m_Name: Round5
   m_TagString: circle
@@ -728,7 +728,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2457551402859401864
+--- !u!114 &2427785426380713625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3300177417069222324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0621215b53a8a44ab81a160a56cabce, type: 3}
+  m_Script: {fileID: 11500000, guid: 53e914656c4b3854783d96efe1f36303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3640976909756661778
