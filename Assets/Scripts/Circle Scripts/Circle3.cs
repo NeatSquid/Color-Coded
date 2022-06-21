@@ -1,15 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Handler_Scripts;
 using UnityEngine;
 
-public class Circle3 : MonoBehaviour
+namespace Circle_Scripts
 {
-    private void Start()
+    public class Circle3 : MonoBehaviour
     {
-        iTween.MoveTo(gameObject,
-            iTween.Hash("y", 0f, "easetype", iTween.EaseType.easeInOutQuad, "time", .6f, "OnComplete", "RotateCircle"));
-    }
+        private void Start()
+        {
+            iTween.MoveTo(gameObject,
+                iTween.Hash("y", 0f, "easetype", iTween.EaseType.easeInOutQuad, "time", .6f, "OnComplete", "RotateCircle"));
+        }
 
-    private void Update() => transform.Rotate(Vector3.down * (Time.deltaTime * (BallHandler.RotationSpeed + 20f)));
+        private void Update() => transform.Rotate(Vector3.down * (Time.deltaTime * (BallHandler.RotationSpeed + 20f)));
+    }
 }

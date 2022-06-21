@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Circle_Scripts
 {
-    public class Circle5 : MonoBehaviour
+    public class Circle2 : MonoBehaviour
     {
         private void Start()
         {
@@ -14,8 +14,8 @@ namespace Circle_Scripts
         private void RotateCircle()
         {
             iTween.RotateBy(gameObject,
-                iTween.Hash("y", .1f, "time", BallHandler.RotationTime, "easetype", iTween.EaseType.easeInOutQuad,
-                    "loopType", iTween.LoopType.pingPong, "delay", 1f));
+                iTween.Hash("y", .8f, "time", BallHandler.RotationTime, "easetype", iTween.EaseType.easeInOutQuad,
+                    "looptype", iTween.LoopType.pingPong, "delay", .4f));
         }
     }
 }
