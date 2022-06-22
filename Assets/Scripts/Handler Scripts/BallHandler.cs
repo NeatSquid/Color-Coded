@@ -1,5 +1,6 @@
 using Color_Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Handler_Scripts
@@ -12,13 +13,26 @@ namespace Handler_Scripts
 
         private int _ballsCount;
         private int _circleIndex;
+        private int _circleCount;
+        private int _heartCount;
 
         public static Color BaseColor;
+
         public GameObject ball;
+        public GameObject dummyBall;
+        public GameObject button;
+        public GameObject levelComplete;
+        public GameObject gameOverScreen;
+        public GameObject startScreen;
+        public GameObject circleEffect;
+        public GameObject completeEffect;
 
         public float speed = 100;
 
         public Color[] colorToChange;
+        private bool _gameFail;
+        public Image[] balls;
+        public GameObject[] hearts;
 
         public SpriteRenderer spriteRenderer;
         public Material splashMaterial;
@@ -32,6 +46,8 @@ namespace Handler_Scripts
         {
             colorToChange = ColorClass.ColorArray;
             BaseColor = colorToChange[0];
+            
+            ChangeBallsCount();
 
             spriteRenderer.color = BaseColor;
             splashMaterial.color = BaseColor;
@@ -47,7 +63,40 @@ namespace Handler_Scripts
             CurrentCircleIndex = _circleIndex;
             LevelsHandler.CurrentColor = BaseColor;
 
+            // _heartCount = PlayerPrefs.GetInt("heart", 1);
+            if (_heartCount == 0)
+                PlayerPrefs.SetInt("hearts", 1);
+            _heartCount = PlayerPrefs.GetInt("hearts");
+            for (var i = 0; i < _heartCount; i++)
+            {
+                hearts[i].SetActive(true);
+            }
+
             SpawnPanels();
+        }
+
+        public void HeartsLow()
+        {
+            _heartCount--;
+            PlayerPrefs.SetInt("hearts", _heartCount);
+            hearts[_heartCount].SetActive(false);
+        }
+
+        void ChangeBallsCount()
+        {
+            _ballsCount = LevelsHandler.BallsCount;
+            dummyBall.GetComponent<MeshRenderer>().material.color = BaseColor;
+
+            foreach (var item in balls)
+            {
+                item.enabled = false;
+            }
+
+            for (var i = 0; i < _ballsCount; i++)
+            {
+                balls[i].enabled = true;
+                balls[i].color = BaseColor;
+            }
         }
 
         public void HitBall()
@@ -57,6 +106,9 @@ namespace Handler_Scripts
                 Invoke(nameof(MakeCircle), .4f);
                 //temporary disable button
             }
+
+            if (_ballsCount >= 0)
+                balls[_ballsCount].enabled = false;
 
             _ballsCount--;
 
@@ -102,6 +154,8 @@ namespace Handler_Scripts
             LevelsHandler.CurrentColor = BaseColor;
 
             SpawnPanels();
+            _circleCount++;
+            ChangeBallsCount();
         }
 
         private void SpawnPanels()
